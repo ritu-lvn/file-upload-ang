@@ -1,0 +1,80 @@
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+<div class="d-flex justify-content-end text-white" style=" align-items: center; background-color:#2f5fad">
+    &nbsp;&nbsp;&nbsp;  
+</div>
+
+<table class="table table-bordered table-striped mb-0"  >
+      <tr style="background-color:#638dd1;overflow: hidden;">
+  
+        <th style="width: 200px;height: 25%">Sl. No</th>
+  
+        <th style="width: 200px;">File Name</th>
+  
+        <th style="width: 200px;">Uploaded Date</th>
+  
+        <th style="width: 200px;">File Size</th>
+
+        <th style="width: 200px;"></th>
+    </tr>
+    
+    
+
+    <tr style="background-color:#bac9e2;">
+  
+        <td style="width: 200px;">
+            <span>&nbsp;&nbsp;
+                <i class="fa fa-filter" aria-hidden="true"></i>
+            </span> 
+        </td>
+        <td style="width: 200px;" >
+                <input type="text" [(ngModel)]="filterText" name="filter"
+                style="border: solid 1px rgba(0, 0, 255, 0.575);border-radius: 5px;">
+        
+        </td>
+        <td style="width: 200px;">
+
+            
+            <span>&nbsp;&nbsp;
+                <i class="fa fa-filter" aria-hidden="true"></i>
+            </span>
+        
+        </td>
+  
+       
+  
+  
+        <td style="width: 200px;"> 
+            <span>&nbsp;&nbsp;
+            </span> </td>
+  
+  
+      <td style="width: 200px;">  </td>
+   </tr>
+
+   <tr style="overflow:scroll" *ngFor="let fileName of array |productFilter:filterText; let i=index " >
+    <td>
+        <span >{{i+1}}</span>
+      </td>
+    <td>
+        <span > {{fileName.fileName}}</span>
+    </td>
+     <td>
+        <span > {{fileName.fileUploadedDate | date: 'yyyy-MM-dd HH:mm'}}  </span>
+     </td>
+     <td>
+        <span >{{fileName.fileSize}} Bytes </span>
+     </td>
+     <td>
+        <span >
+                <button  class="btn btn-info active" (click)="openModel(fileName.fileID)" >Delete</button>
+     </span> 
+
+     </td>
+       </tr>
+
+  </table>
+</div>
+
+  
