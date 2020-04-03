@@ -13,7 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
 import { ApiService } from './api.service';
 import { FilterName } from './Pipe/filter-name.pipe';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,8 @@ import { FilterName } from './Pipe/filter-name.pipe';
     NgbModule,
     NgbModalModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,  
+    NgxSpinnerModule 
   ],
   providers: [
   ApiService

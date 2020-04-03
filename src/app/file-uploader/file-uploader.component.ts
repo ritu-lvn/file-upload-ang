@@ -3,7 +3,7 @@ import { Component, OnInit, Injectable,  Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FileModel } from '../model/FileModel';
 import { ApiService } from '../api.service';
-import { HttpHandler } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
  selector: 'app-file-uploader',
@@ -12,7 +12,6 @@ import { HttpHandler } from '@angular/common/http';
 })
 @Injectable()
 export class FileUploaderComponent implements OnInit {
-  arrayFromCompA=["ashok", "mithlesh", "suresh"]
   @Input() fileList:FileModel [] = [];
   ngOnInit(): void {
   }
@@ -30,7 +29,8 @@ export class FileUploaderComponent implements OnInit {
 
 prfileForm: FormGroup;
 fileUpload :[];
- constructor(private fb: FormBuilder, private apiService : ApiService ) {
+ constructor(private fb: FormBuilder, private apiService : ApiService, 
+   private SpinnerService: NgxSpinnerService ) {
     
 
   }
@@ -58,23 +58,23 @@ refresh(){
 
 
  public onSubmit(): void {
+  this.SpinnerService.show();
   this.apiService.postFiles(this.fileToUpload).subscribe(data => {
+   
     this.refresh();
     console.log("***** DATA *****")
     console.log(data);
     
     alert(data.message);
-  }, error => {
     
+  }, error => {
+    this.SpinnerService.hide();
     if (!error.error.status)
     {
       alert(error.error.message);
     }else{
       alert(error)
     }
-    console.log("***** ERROR *****")
-    console.log(error);
-    console.log(error.error.message);
     
   });
   

@@ -7,6 +7,7 @@ import { PopupComponent } from '../popup/popup.component'
 import { FileModel } from '../model/FileModel';
 import { ApiService } from '../api.service';
 import { ResponseModel } from '../model/responseModel';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-file-list',
   templateUrl: './file-list.component.html',
@@ -19,11 +20,11 @@ export class FileListComponent implements OnInit {
   fileList = [];
   filterText = "";
   constructor(public dialog: MatDialog,
-     private modalService: NgbModal, private apiService: ApiService
+     private modalService: NgbModal, private apiService: ApiService,
+     private SpinnerService: NgxSpinnerService
      ) {
   }
   ngOnInit(): void {
-   
     this.GetFiles();
   }
 
@@ -33,9 +34,11 @@ export class FileListComponent implements OnInit {
  }
 
   deleteFile(id: number): void{
+    this.SpinnerService.show();
     this.apiService.deleteFile(id).subscribe(
        data    =>{
          alert(data.message);
+         this.SpinnerService.hide();
       }, error => {
           if (!error.error.status)
            {
@@ -74,13 +77,13 @@ export class FileListComponent implements OnInit {
   }
 
   GetFiles(){
+    this.SpinnerService.show();  
      this.apiService.getFiles().subscribe((data:any)=>{
 
       let list:Array<FileModel> = [];
       data.forEach((val,i) => {
         console.dir(data);
-
-        
+        this.SpinnerService.hide(); 
         let  model = new FileModel();
         model.fileName = val.FileName;
         model.fileSize = val.FileSize;
@@ -99,5 +102,6 @@ export class FileListComponent implements OnInit {
     });
 
   }
+
 
 }

@@ -15,7 +15,7 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getFiles(){
-     return this.http.get('http://server-file-upload.herokuapp.com/listfiles').pipe(
+     return this.http.get('https://serverfileupload.herokuapp.com/listfiles').pipe(
       map((data: [] , res) => {
 
         console.log(res)
@@ -32,7 +32,7 @@ export class ApiService {
   this.selectedFile = file;
   let formData = new FormData();
   formData.append('myFile', this.selectedFile, this.selectedFile.name);
- return this.http.post<ResponseModel>('http://server-file-upload.herokuapp.com/uploadfile', formData);
+ return this.http.post<ResponseModel>('https://serverfileupload.herokuapp.com/uploadfile', formData);
  
   
  // return this.http;
@@ -43,7 +43,7 @@ handleError(error: HttpErrorResponse){
   }
 
 deleteFile(id){
- return this.http.delete<ResponseModel>(`${'http://server-file-upload.herokuapp.com/deletefile'}/${id}`);
+ return this.http.delete<ResponseModel>(`${'https://serverfileupload.herokuapp.com/deletefile'}/${id}`);
 }
 
 
