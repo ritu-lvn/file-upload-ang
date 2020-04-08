@@ -1,10 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<body style="margin-left: 40%;  overflow: hidden; ">
-
-<form style="margin-top: 20%"  [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
+<body style=" overflow: hidden; ">
+ <div class="warning">
+ <p><strong>Warning!&nbsp;&nbsp;&nbsp;</strong>Please upload .json,.xlsx,.pdf,.png,.jpeg files and File size should be less than 1MB</p>
+ </div>
+              
+<form style="margin-top: 5%; margin-left: 20%; "  [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
 
         <div class="dropzone">
                 <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
@@ -12,7 +14,7 @@
                 
             </div>
             <label for="file-upload" class="custom-file-upload" style="width: 240% ; margin: 20px"><small>{{fileName}}</small></label>
-
+           
             
             
      <input type="submit"  class="btn btn-info "  [disabled]="formGroup.invalid" value="upload" />

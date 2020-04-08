@@ -79,7 +79,6 @@ export class FileListComponent implements OnInit {
   GetFiles(){
     this.SpinnerService.show();  
      this.apiService.getFiles().subscribe((data:any)=>{
-
       let list:Array<FileModel> = [];
       data.forEach((val,i) => {
         console.dir(data);

@@ -103,6 +103,15 @@ h1 {
 	box-shadow: 0 3px 0 0 deeppink;
 }
 
+
+.warning {
+	margin-top: 5%;
+	margin-left: 3%;
+	height: 3%;
+	background-color: #ffffcc;
+	border-left: 6px solid #ffeb3b;
+  }
+
 input:focus, textarea:focus, select:focus{
     outline: none;
 }
